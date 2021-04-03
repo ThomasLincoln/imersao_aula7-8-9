@@ -16,19 +16,19 @@
                 width="300px" height="400px">
         </div>
         <div class="botoes">
-            <button>Decidir</button>
-            <button>Sortear</button>
-            <button type="reset">Reiniciar</button>
+            <button id="btnDecidir" onclick="btnDecidir()">Decidir</button>
+            <button id="btnSortear" onclick="exibeCarta()">Sortear</button>
+            <button type="reset" id="btnReiniciar" onclick="btnReiniciar()">Reiniciar</button>
             <p>pontuação</p>
         </div>
-        <div id="cartaPlayer" class="carta">
-            <img src="https://upload.wikimedia.org/wikipedia/en/thumb/2/2b/Yugioh_Card_Back.jpg/150px-Yugioh_Card_Back.jpg" width="300px"
-                height="400px"><br>
-                <input type="radio" id="AtaqueBot" name="escolha" value="Ataque">
-                <label for="Ataque">Ataque</label>
-                <input type="radio" id="defesaBot" name="escolha" value="defesa">
-                <label for="defesa">Defesa</label>
+        <div class="carta">
+            <img id="cartaPlayer" src="https://upload.wikimedia.org/wikipedia/en/thumb/2/2b/Yugioh_Card_Back.jpg/150px-Yugioh_Card_Back.jpg" width="300px" height="400px">
         </div>
+        <br>
+        <input type="radio" id="AtaqueBot" name="escolha" value="Ataque">
+        <label for="Ataque">Ataque</label>
+        <input type="radio" id="defesaBot" name="escolha" value="defesa">
+        <label for="defesa">Defesa</label>
     </div>
     <script src="script.js"></script>
 </body>

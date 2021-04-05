@@ -11,24 +11,27 @@
 
 <body>
     <div class="container">
-        <div id="cartaMaquina" class="carta">
-            <img src="https://upload.wikimedia.org/wikipedia/en/thumb/2/2b/Yugioh_Card_Back.jpg/150px-Yugioh_Card_Back.jpg"
+        <div class="carta">
+            <img id="cartaMaquina" src="https://upload.wikimedia.org/wikipedia/en/thumb/2/2b/Yugioh_Card_Back.jpg/150px-Yugioh_Card_Back.jpg"
                 width="300px" height="400px">
         </div>
         <div class="botoes">
             <button id="btnDecidir" onclick="btnDecidir()">Decidir</button>
             <button id="btnSortear" onclick="exibeCarta()">Sortear</button>
-            <button type="reset" id="btnReiniciar" onclick="btnReiniciar()">Reiniciar</button>
-            <p>pontuação</p>
+            <button type="reset" id="btnReiniciar" onclick="reiniciar()">Reiniciar</button><br><br>
+            <p>pontos máquina:<span id="pMaquina"></span></p>
+            <p>pontos player:<span id="pPlayer"></span></p>
         </div>
         <div class="carta">
-            <img id="cartaPlayer" src="https://upload.wikimedia.org/wikipedia/en/thumb/2/2b/Yugioh_Card_Back.jpg/150px-Yugioh_Card_Back.jpg" width="300px" height="400px">
+            <img id="cartaPlayer"
+                src="https://upload.wikimedia.org/wikipedia/en/thumb/2/2b/Yugioh_Card_Back.jpg/150px-Yugioh_Card_Back.jpg"
+                width="300px" height="400px">
+                <br>
+            <input type="radio" id="ataquePlayer" class="escolha" value="ataque">
+            <label for="Ataque">Ataque</label>
+            <input type="radio" id="defesaPlayer" class="escolha" value="defesa">
+            <label for="defesa">Defesa</label>
         </div>
-        <br>
-        <input type="radio" id="AtaqueBot" name="escolha" value="Ataque">
-        <label for="Ataque">Ataque</label>
-        <input type="radio" id="defesaBot" name="escolha" value="defesa">
-        <label for="defesa">Defesa</label>
     </div>
     <script src="script.js"></script>
 </body>

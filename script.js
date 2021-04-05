@@ -24,41 +24,97 @@ var cartas = [
         }
     }
 ]
-
 var imagemPlayer = document.getElementById('cartaPlayer')
+var imagemMaquina = document.getElementById('cartaMaquina')
 var numeroCartaMaquina = 0
-var cartaJogador = 0
 var cartaJogadorSelecionado = 0
+var imagemMaquina = document.getElementById('cartaMaquina')
+var pontosMaquina = 0
+var pontosPlayer = 0
+var radioAtributo = document.getElementsByClassName("escolha")
+
 
 function sortearCarta() {
     numeroCartaMaquina = 0
-    cartaJogadorSelecionado = 0
-    cartaJogador = 0
+    numeroCartaJogador = 0
+    imagemMaquina.src = "https://upload.wikimedia.org/wikipedia/en/thumb/2/2b/Yugioh_Card_Back.jpg/150px-Yugioh_Card_Back.jpg";
 
     numeroCartaMaquina = parseInt(Math.random() * 3)
-    cartaJogador = parseInt(Math.random() * 3)
+    numeroCartaJogador = parseInt(Math.random() * 3)
+    cartaMaquina = cartas[numeroCartaMaquina]
 
-    if (cartaJogador == numeroCartaMaquina) {
-        cartaJogador = parseInt(Math.random() * 3)        
+    if (numeroCartaJogador == numeroCartaMaquina) {
+        numeroCartaJogador = parseInt(Math.random() * 3)
     } else {
-        numeroCartaJogador = cartaJogador
+        cartaJogador = cartas[numeroCartaJogador]
     }
-    console.log(cartaJogador)
+
+    document.getElementById('btnSortear').disabled = true
+    document.getElementById('btnDecidir').disabled = false
+    document.getElementById('btnDecidir').style.backgroundColor = "rgb(206, 168, 85)"
+    document.getElementById('btnSortear').style.backgroundColor = "gray"
 }
 
 function exibeCarta() {
     sortearCarta()
+    if (numeroCartaMaquina == numeroCartaJogador) {
+        sortearCarta()
+    } else {
+        for (var i = 0; i < cartas.length; i++) {
+            if (numeroCartaJogador == i) {
+                imagemPlayer.src = cartas[i].imagem
+            }
+        }
+    }
+}
+function exibeCartaMaquina() {
     for (var i = 0; i < cartas.length; i++) {
-        if (numeroCartaJogador == i) {
-            console.log(cartas[i])
-            imagemPlayer.src = cartas[i].imagem
+        if (numeroCartaMaquina == i) {
+            imagemMaquina.src = cartas[i].imagem
         }
     }
 }
 
-function btnReiniciar() {
-    imagemPlayer.style.backgroundImage = 'url("https://upload.wikimedia.org/wikipedia/en/thumb/2/2b/Yugioh_Card_Back.jpg/150px-Yugioh_Card_Back.jpg")';
+
+function reiniciar() {
+    imagemPlayer.src = "https://upload.wikimedia.org/wikipedia/en/thumb/2/2b/Yugioh_Card_Back.jpg/150px-Yugioh_Card_Back.jpg";
+    imagemMaquina.src = "https://upload.wikimedia.org/wikipedia/en/thumb/2/2b/Yugioh_Card_Back.jpg/150px-Yugioh_Card_Back.jpg";
+    pontosMaquina = 0
+    pontosPlayer = 0
+    document.getElementById('pMaquina').innerHTML = pontosMaquina
+    document.getElementById('pPlayer').innerHTML = pontosPlayer
+    document.getElementById('btnSortear').disabled = false
+    document.getElementById('btnDecidir').disabled = true
+    document.getElementById('btnSortear').style.backgroundColor = "rgb(206, 168, 85)"
+    document.getElementById('btnDecidir').style.backgroundColor = "gray"
 }
+
+function pegaAtributo() {
+    for (var i = 0; i < radioAtributo.length; i++) {
+        if (radioAtributo[i].checked) {
+            return radioAtributo[i].value
+        }
+    }
+}
+
 function btnDecidir() {
-    console.log("decidir")
+    var atributoSelecionado = pegaAtributo()
+
+    if (cartaJogador.atributos[atributoSelecionado] > cartaMaquina.atributos[atributoSelecionado]) {
+        console.log("ganhou")
+        pontosPlayer++
+        document.getElementById('pPlayer').innerHTML = pontosPlayer
+        exibeCartaMaquina()
+    } else if (cartaJogador.atributos[atributoSelecionado] < cartaMaquina.atributos[atributoSelecionado]) {
+        console.log("perdeu")
+        pontosMaquina++
+        document.getElementById('pMaquina').innerHTML = pontosMaquina
+        exibeCartaMaquina()
+    }
+    document.getElementById('btnSortear').disabled = false
+    document.getElementById('btnDecidir').disabled = true
+    document.getElementById('btnSortear').style.backgroundColor = "rgb(206, 168, 85)"
+    document.getElementById('btnDecidir').style.backgroundColor = "gray"
+    document.getElementById('ataquePlayer').checked = false;
+    document.getElementById('defesaPlayer').checked = false;
 }

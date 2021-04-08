@@ -1,9 +1,14 @@
 *{
     margin: 0;
     padding: 0;
-    background-color: rgb(39, 36, 36);
-    color: blanchedalmond;
+    color: black;
     font-family:'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif
+}
+body{
+    background-image: url("https://i.pinimg.com/originals/fc/ef/f8/fceff8a8d6ff2c6fea6d8a6d3b1c8b88.jpg");
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+    background-size: 100% 100%;
 }
 
 .container{
@@ -18,12 +23,16 @@
     margin-left: 20px;
     margin-right: 20px;
     margin-top: 30vh;
+    height: 100px;
+    padding: 10px;
+    border-radius: 5px;
+    background-color: rgb(25, 107, 230);
+
 }
 
 button{
     cursor: pointer;
     background-color: rgb(206, 168, 85);
-    color: black;
     border: none;
     border-radius: 4px;
     padding: 3px;
@@ -32,4 +41,10 @@ button{
 
 #btnDecidir{
     background-color: gray;
+}
+.opcoes{
+    background-color: rgb(25, 107, 230);
+    width: 150px;
+    padding: 10px;
+    border-radius: 5px;
 }

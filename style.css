@@ -14,11 +14,9 @@ body{
 .container{
     display: flex;
     margin-top: 20vh;
+    justify-content: center;
 }
 
-#cartaMaquina{
-    margin-left: 19vw;
-}
 .botoes{
     margin-left: 20px;
     margin-right: 20px;

@@ -36,7 +36,7 @@ async function getAllCards() {
 
 function sortearCarta() {
     imagemMaquina.src = "https://upload.wikimedia.org/wikipedia/en/thumb/2/2b/Yugioh_Card_Back.jpg/150px-Yugioh_Card_Back.jpg";
-    
+    document.getElementById('result').innerHTML = ""
     //pega um index random da lista de cards
     numRandom = parseInt(Math.random() * listaDeCards.length)
     cartaJogador = listaDeCards[numRandom]
@@ -54,6 +54,7 @@ function sortearCarta() {
 
 
 function reiniciar() {
+    getAllCards()
     imagemPlayer.src = "https://upload.wikimedia.org/wikipedia/en/thumb/2/2b/Yugioh_Card_Back.jpg/150px-Yugioh_Card_Back.jpg";
     imagemMaquina.src = "https://upload.wikimedia.org/wikipedia/en/thumb/2/2b/Yugioh_Card_Back.jpg/150px-Yugioh_Card_Back.jpg";
     pontosMaquina = 0
@@ -64,6 +65,7 @@ function reiniciar() {
     document.getElementById('btnDecidir').disabled = true
     document.getElementById('btnSortear').style.backgroundColor = "rgb(206, 168, 85)"
     document.getElementById('btnDecidir').style.backgroundColor = "gray"
+    document.getElementById('result').innerHTML = ""
 }
 
 function pegaAtributo() {
@@ -79,14 +81,17 @@ function pegaAtributo() {
 
 function btnDecidir() {
     pegaAtributo()
+    imagemMaquina.src = cartaMaquina.imagem
     if (cartaJogador[atributoSelecionado] > cartaMaquina[atributoNaoSelecionado]) {
         pontosPlayer++
         document.getElementById('pPlayer').innerHTML = pontosPlayer
-        imagemMaquina.src = cartaMaquina.imagem
+        document.getElementById('result').innerHTML = "Vitória"
     } else if (cartaJogador[atributoSelecionado] < cartaMaquina[atributoNaoSelecionado]) {
         pontosMaquina++
         document.getElementById('pMaquina').innerHTML = pontosMaquina
-        imagemMaquina.src = cartaMaquina.imagem
+        document.getElementById('result').innerHTML = "Derrota"
+    }else{
+        document.getElementById('result').innerHTML = "Empate"
     }
     document.getElementById('btnSortear').disabled = false
     document.getElementById('btnDecidir').disabled = true
@@ -94,4 +99,10 @@ function btnDecidir() {
     document.getElementById('btnDecidir').style.backgroundColor = "gray"
     document.getElementById('ataquePlayer').checked = false;
     document.getElementById('defesaPlayer').checked = false;
+    
+    if(pontosPlayer == 3 && pontosPlayer > pontosMaquina){
+        document.getElementById('result').innerHTML = "Você ganhou"
+    }else if(pontosMaquina = 3 && pontosMaquina>pontosPlayer){
+        document.getElementById('result').innerHTML = "O bot ganhou"
+    }   
 }
